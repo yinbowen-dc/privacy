@@ -24,6 +24,7 @@
             display: flex;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            flex-shrink: 0;
         }
 
         .back-btn {
@@ -39,7 +40,7 @@
         .app-icon {
             width: 32px;
             height: 32px;
-            background-color: #8b5cf6; /* 紫色背景 */
+            background-color: #8b5cf6;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -58,29 +59,38 @@
         /* 主内容区域 */
         .main-content {
             flex: 1;
-            padding: 24px;
+            padding: 16px 24px; /* 减小上下 padding */
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
             display: flex;
-            gap: 24px;
+            flex-direction: column;
+            gap: 16px; /* 减小间距 */
+            overflow-y: auto;
         }
 
-        /* 左右分栏 */
+        /* 上部左右分栏 */
+        .top-panels {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
         .panel {
             flex: 1;
             background: #fff;
-            border-radius: 12px;
+            border-radius: 8px; /* 稍微减小圆角 */
             border: 1px solid #e5e7eb;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            min-width: 300px;
         }
 
         .panel-header {
-            padding: 16px;
+            padding: 12px 16px; /* 减小 padding */
             border-bottom: 1px solid #e5e7eb;
             display: flex;
             justify-content: space-between;
@@ -95,48 +105,139 @@
         }
 
         .panel-body {
-            padding: 20px;
-            flex: 1;
+            padding: 16px; /* 减小 padding */
             background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
+        /* 上传区域样式 */
+        .upload-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .btn-upload {
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .file-name {
+            color: #6b7280;
+            font-size: 13px;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .status-text {
+            color: #10b981; /* Green */
+            font-size: 12px;
+        }
+
+        /* 选择行区域 */
         .selection-area {
-            background-color: #f0f9ff; /* 浅蓝色背景 */
+            background-color: #f0f9ff;
             border: 1px solid #bae6fd;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: 6px;
+            padding: 12px; /* 减小 padding */
         }
 
         .selection-title {
-            font-size: 14px;
-            font-weight: 500;
-            color: #0369a1;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
             margin-bottom: 8px;
         }
 
-        .file-status {
-            font-size: 12px;
-            color: #6b7280;
+        .form-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background-color: #fff;
+            font-size: 14px;
+            color: #1f2937;
+            outline: none;
+            box-sizing: border-box;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
         }
 
-        /* 图标样式 */
-        .icon-swap {
+        /* 底部操作区 */
+        .full-width-card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            margin-right: 8px;
+            accent-color: #2563eb;
             width: 16px;
             height: 16px;
-            fill: currentColor;
         }
 
-        /* 修正对齐的关键：
-           确保 header 的内容起始位置与 main-content 的起始位置视觉上一致。
-           main-content 有 padding: 24px。
-           header 也有 padding: 16px 24px。
-           这样左边缘是对齐的。
-        */
-        
+        .btn-submit {
+            width: 100%;
+            background-color: #8b5cf6;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #7c3aed;
+        }
+
         @media (max-width: 768px) {
-            .main-content {
+            .top-panels {
                 flex-direction: column;
+            }
+            .header, .main-content {
+                padding-left: 16px;
+                padding-right: 16px;
             }
         }
     </style>
@@ -146,10 +247,12 @@
     <!-- 顶部导航栏 -->
     <header class="header">
         <a href="index.html" class="back-btn" title="返回">
-            ←
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
         </a>
         <div class="app-icon">
-            <!-- 简单的双向箭头 SVG -->
             <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="17 1 21 5 17 9"></polyline>
                 <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
@@ -162,37 +265,75 @@
 
     <!-- 主内容区 -->
     <div class="main-content">
-        <!-- 左侧面板：文件1 -->
-        <div class="panel">
-            <div class="panel-header">
-                <span class="panel-title">文件 1 (基准)</span>
-            </div>
-            <div class="panel-body">
-                <div class="selection-area">
-                    <div class="selection-title">选择文件1的行</div>
-                    <div class="file-status">请先上传文件...</div>
+        <div class="top-panels">
+            <!-- 左侧面板：文件1 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">文件 1 (基准)</span>
                 </div>
-                <!-- 更多内容占位 -->
+                <div class="panel-body">
+                    <div class="upload-row">
+                        <button class="btn-upload">选择文件</button>
+                        <span class="file-name">未命名表格.xlsx</span>
+                    </div>
+                    <div class="status-text">已加载: 未命名表格.xlsx (2 行)</div>
+                    
+                    <div class="selection-area">
+                        <div class="selection-title">选择文件1的行</div>
+                        <select class="form-select">
+                            <option>行 1: 张三...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧面板：文件2 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">文件 2 (比对)</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280; cursor: pointer;">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+                <div class="panel-body">
+                    <div class="upload-row">
+                        <button class="btn-upload">选择文件</button>
+                        <span class="file-name">未命名表格.xlsx</span>
+                    </div>
+                    <div class="status-text">已加载: 未命名表格.xlsx</div>
+
+                    <div class="selection-area">
+                        <div class="selection-title">选择文件2的行</div>
+                        <select class="form-select">
+                            <option>行 1: 张三...</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- 右侧面板：文件2 -->
-        <div class="panel">
-            <div class="panel-header">
-                <span class="panel-title">文件 2 (比对)</span>
-                <!-- 文件夹图标 -->
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280; cursor: pointer;">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                </svg>
-            </div>
-            <div class="panel-body">
-                <div class="selection-area">
-                    <div class="selection-title">选择文件2的行</div>
-                    <div class="file-status">请先上传文件...</div>
-                </div>
-                <!-- 更多内容占位 -->
+        <!-- 选择参与比对的列 -->
+        <div class="full-width-card">
+            <div class="selection-title">选择参与比对的列</div>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" checked> 姓名
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" checked> 年龄
+                </label>
             </div>
         </div>
+
+        <!-- 底部按钮 -->
+        <button class="btn-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+                <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+                <path d="M9 14l2 2 4-4"></path>
+            </svg>
+            开始比对
+        </button>
     </div>
 
 </body>
