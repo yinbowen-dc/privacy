@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据校验助手</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            background-color: #fff;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .back-btn {
+            margin-right: 16px;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #8b5cf6; /* 紫色背景 */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .app-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            gap: 24px;
+        }
+
+        /* 左右分栏 */
+        .panel {
+            flex: 1;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .panel-header {
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafb;
+        }
+
+        .panel-title {
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+        }
+
+        .panel-body {
+            padding: 20px;
+            flex: 1;
+            background-color: #fff;
+        }
+
+        .selection-area {
+            background-color: #f0f9ff; /* 浅蓝色背景 */
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .selection-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0369a1;
+            margin-bottom: 8px;
+        }
+
+        .file-status {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* 图标样式 */
+        .icon-swap {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* 修正对齐的关键：
+           确保 header 的内容起始位置与 main-content 的起始位置视觉上一致。
+           main-content 有 padding: 24px。
+           header 也有 padding: 16px 24px。
+           这样左边缘是对齐的。
+        */
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <a href="index.html" class="back-btn" title="返回">
+            ←
+        </a>
+        <div class="app-icon">
+            <!-- 简单的双向箭头 SVG -->
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9"></polyline>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                <polyline points="7 23 3 19 7 15"></polyline>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+        </div>
+        <div class="app-title">数据校验助手</div>
+    </header>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 左侧面板：文件1 -->
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">文件 1 (基准)</span>
+            </div>
+            <div class="panel-body">
+                <div class="selection-area">
+                    <div class="selection-title">选择文件1的行</div>
+                    <div class="file-status">请先上传文件...</div>
+                </div>
+                <!-- 更多内容占位 -->
+            </div>
+        </div>
+
+        <!-- 右侧面板：文件2 -->
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">文件 2 (比对)</span>
+                <!-- 文件夹图标 -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280; cursor: pointer;">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <div class="panel-body">
+                <div class="selection-area">
+                    <div class="selection-title">选择文件2的行</div>
+                    <div class="file-status">请先上传文件...</div>
+                </div>
+                <!-- 更多内容占位 -->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
